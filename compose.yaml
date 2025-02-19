@@ -1,0 +1,22 @@
+services:
+  reverse-proxy:
+    image: traefik:v3.3
+    container_name: traefik
+    command:
+      - "--api.insecure=true"
+      - "--providers.file.filename=/etc/traefik/python.yaml"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    extra_hosts:
+    - "host.docker.internal:host-gateway"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./python.yaml:/etc/traefik/python.yaml
+  network-connector:
+    image: obeoneorg/traefik_network_connector:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

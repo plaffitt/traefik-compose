@@ -1,0 +1,11 @@
+http:
+  routers:
+    python-server:
+      rule: "Host(`python.localhost`)"
+      service: python-service
+
+  services:
+    python-service:
+      loadBalancer:
+        servers:
+          - url: "http://host.docker.internal:8643"
