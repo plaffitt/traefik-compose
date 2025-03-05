@@ -1,6 +1,6 @@
 # Traefik - How to: Multiple network-isolated compose stacks
 
-This is a demo of how to use Traefik with multiple docker compose stacks and some local services running on the host, all network-isolated and in an easy way.
+This is a demo of how to use Traefik with multiple docker compose stacks, all network-isolated from each others and in an easy way. Normally you would have to manually add traefik to the networks of your each of your compose stacks, here we use a tool that automatically does this, allowing to deploy additionnal stacks on your host without needing to update your traefik configuration. And as a bonus, we will also expose a service running in the host directly (not in a container). 
 
 ## How it works?
 
